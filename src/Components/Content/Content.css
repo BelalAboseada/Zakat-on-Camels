@@ -52,16 +52,10 @@
   border-color: var(--main);
   margin: 10px 5px;
   border-radius: 6px;
-  color: var(--main);
+  /* color: var(--main); */
 }
 
-.notification {
-  background-color: #c0392b;
-  color: #eee;
-  width: fit-content;
-  padding: 4px 15px;
-  border-radius: 5px;
-}
+
 .table {
   display:inline-table;
   text-align: center;

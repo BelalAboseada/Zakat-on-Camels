@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import TableView from "./TableView";
 import "./Content.css";
 
@@ -7,11 +7,11 @@ const ContentView = () => {
   const [higa] = useState(2);
   const [bintlebon] = useState(4);
   const [result, setResult] = useState(null);
-  const [notification, setNotification] = useState(null);
+  const inputRef = useRef(null);
 
   // arrayOfTheZakat
   const arrayOfTheZakat = [
-    { start: 0, end: 4 },
+    { start: 0, end: 4, result :"هذا العدد لا تجب فيه الزكاة."},
     { start: 5, end: 9, result: "شاة واحدة" },
     { start: 10, end: 14, result: "شاتان" },
     { start: 15, end: 19, result: "ثلاثة شياه" },
@@ -42,34 +42,25 @@ const ContentView = () => {
   }, [total]);
 
   // Calcule
-  // Calcule
-const calcule = () => {
-  if (total === '') {
-    setNotification(null);
-    setResult(null);
-    return;
-  }
+  const calcule = () => {
+    arrayOfTheZakat.forEach((status) => {
+      if (total >= status.start && total <= status.end)
+        setResult(status.result);
+    });
 
-  for (const status of arrayOfTheZakat) {
-    if (total >= status.start && total <= status.end) {
-      setResult(status.result);
+    if (total > 169) {
+      setResult(null);
     }
-  }
-
-  if (total > 169) {
-    setResult(null);
-  }
-
-  if (total >= 0 && total <= 4) {
-    setNotification("هذا العدد لا تجب فيه الزكاة.");
-  } else {
-    setNotification(null);
-  }
-};
+  };
+  // auto focus
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   return (
     <div className="ContentView">
       <input
+        ref={inputRef}
         className="myInput"
         type="number"
         placeholder="أكتب هنا عدد الرؤوس ..."
@@ -80,23 +71,6 @@ const calcule = () => {
       <button id="calcule" onClick={calcule}>
         حساب
       </button>
-      {/* notification */}
-      <div
-        style={{
-          margin: "10px 0px",
-          textAlign: "center",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <p
-          className="notification"
-          style={{ display: notification ? "block" : "none" }}
-        >
-          {notification}
-        </p>
-      </div>
 
       <TableView
         total={total}
@@ -106,7 +80,11 @@ const calcule = () => {
       />
       <h3
         className="resultContent"
-        style={{ display: result && total > 4 ? "block" : "none" }}
+        style={{
+          display: result && total > 0 ? "block" : "none",
+          color: result === "هذا العدد لا تجب فيه الزكاة." ? "#D71313" : "var(--main)",
+          borderColor: result === "هذا العدد لا تجب فيه الزكاة." ? "#D71313" : "var(--main)",
+        }}
       >
         {result}
       </h3>
