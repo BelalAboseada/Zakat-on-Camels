@@ -1,0 +1,70 @@
+.ContentView {
+  direction: rtl;
+  text-align: center;
+}
+.notificationP {
+  margin: 10px 0px;
+}
+.myInput {
+  margin-left: 10px;
+  border-style: solid;
+  border-color: var(--main);
+  border-radius: 5px;
+  font-size: 16px;
+  min-width: 250px;
+  padding: 3px 5px;
+}
+.myInput::placeholder {
+  color: var(--text);
+  opacity: 0.5;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: text;
+}
+.myInput:focus {
+  border-color: var(--main);
+  outline: none;
+}
+#calcule {
+  border-style: solid;
+  background-color: var(--main);
+  border: none;
+  border-radius: 3px;
+  color: white;
+  padding: 4px 10px;
+  margin: 5px;
+  transition: 1.5s;
+  cursor: pointer;
+}
+#calcule:hover {
+  color: var(--main);
+  background-color: #fff;
+  outline: auto;
+  outline-color: var(--main);
+}
+#calcule.clicked {
+  outline-color: blue;
+}
+.resultContent {
+  padding: 10px 15px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--main);
+  margin: 10px 5px;
+  border-radius: 6px;
+  color: var(--main);
+}
+
+.notification {
+  background-color: #c0392b;
+  color: #eee;
+  width: fit-content;
+  padding: 4px 15px;
+  border-radius: 5px;
+}
+.table {
+  display:inline-table;
+  text-align: center;
+  justify-content: center;
+  margin: 10px;
+}
