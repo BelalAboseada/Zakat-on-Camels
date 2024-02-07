@@ -1,4 +1,9 @@
 # zakat-on-camels
+<p>An application that calculates zakat on camels</p>
+
+#Technologies Used:
+-React
+-Reactstrap
 
 # Project setup
 ```
@@ -10,15 +15,4 @@ npm install
 npm run dev
 ```
 
-# Compiles and minifies for production
-```
-npm run build
-```
 
-# Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://vitejs.dev/).
